@@ -84,13 +84,29 @@ if(mysqli_num_rows($result)!=0)
 </div>
 <a href="addToWallet.php"> Add to your wallet </a>
 <h3>Notifications</h3>
+
 <?php
 $result=mysqli_query($connect,"select * from add_wallet");
 if(mysqli_num_rows($result)!=0)
 while($row=mysqli_fetch_assoc($result))
 {
 
-  $result1=mysqli_query($connect,"select * from check_wallet");
+  
+  ?>
+  <div>
+<div>
+  <p> You have Added 
+     <?php echo $row['amount']?> to your wallet in <?php echo $row['date']?>
+  </p>
+ 
+</div>
+</div>
+<?php
+}
+else 
+echo" NO notifications is found " ;
+
+$result1=mysqli_query($connect,"select * from check_wallet");
   {
     while($rows=mysqli_fetch_assoc($result1))
     {
@@ -105,19 +121,9 @@ while($row=mysqli_fetch_assoc($result))
 
     }
   }
-  ?>
-<div>
-  <p> You have Added 
-     <?php echo $row['amount']?> to your wallet in <?php echo $row['date']?>
-  </p>
- 
-</div>
-
-<?php
-}
-else 
-echo" NO notifications is found " ;
 ?>
+
+
 
 </body>
 </html>
